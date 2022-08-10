@@ -1,0 +1,5 @@
+a=int(input("enter a"))
+b=int(input("enter b"))
+# print(type(a))
+# print(type(b))
+print((a+b)/2)

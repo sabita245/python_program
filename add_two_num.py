@@ -1,0 +1,7 @@
+a=input("enter first number:")
+b=input("enter second number:")
+# print("first number is:", a)
+# print("second number is:", b)
+a=int(a)
+b=int(b)
+print("addition of a & b is:", a+b)

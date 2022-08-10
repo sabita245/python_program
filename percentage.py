@@ -1,0 +1,5 @@
+list=list(input())
+#l1=list.add()
+n=len(list)
+output=sum(list)
+print(output/n)

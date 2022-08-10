@@ -1,0 +1,14 @@
+name="marry"
+print(type(name))
+print(len(name))
+print(name[0:2])
+print(name[2:4])
+print(name[:])
+print(name[:3])
+print(name[0:])
+print(name[::-1])
+var="hellofriend"
+print(var[1:8:2])
+print(var.endswith("fg"))
+print(len(var))
+print(var.replace("hello","GoodMorning"))

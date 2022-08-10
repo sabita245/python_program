@@ -1,0 +1,12 @@
+l1=[34,67,21,87,12]
+l1.sort()
+print(l1)
+l1.reverse()
+print(l1)
+l1.append(45)
+print(l1)
+l2=[1,2,3]
+l1.append(l2)
+print(l1)
+l1.insert(2,544)
+print(l1)
