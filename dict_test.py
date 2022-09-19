@@ -1,0 +1,9 @@
+dict={
+    'a':1,
+    'b':2,
+    'c':3,
+    'd':20
+}
+print(dict['a'])
+print(dict.get('d'))
+print(dict.get('d',55))
