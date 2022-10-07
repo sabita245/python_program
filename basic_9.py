@@ -1,0 +1,12 @@
+# Exercise 9: Check Palindrome Number
+# Write a program to check if the given number is a palindrome number.
+
+# A palindrome number is a number that is same after reverse. For example 545, is the palindrome numbers
+n=input('enter a number')
+rev_num=''
+for i in n:
+    rev_num=i+rev_num
+if n==rev_num:
+    print('Given number is a palindrome number')
+else:
+    print('not palindrome number')
