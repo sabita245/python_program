@@ -4,7 +4,7 @@
 # remove_chars("pynative", 4) so output must be tive. Here we need to remove first four characters from a string.
 def remove_nchar(string,n):
     res=string[n:]
-    print(res)
+    return res
 string=(input('enter a string'))
 n=int(input('enter the number of char you want to remove'))
 print(remove_nchar(string,n))
