@@ -1,0 +1,182 @@
+import json
+import random
+
+class ProductDetail:
+   
+    def add_product(self,product_name,company_name,product_price,category_input,shipping_charge,quantity):
+        self.category=['storage','home','education','others']
+        self.product_id=random.randint(1000,10000)
+        self.product_name=product_name
+        self.company_name=company_name
+        self.shipping_charge=shipping_charge
+        self.quantity=quantity
+        self.gst=['6%','12%','18%']
+        self.product_image=['image1','image2','image3','iamge4']
+        self.product_price=product_price
+        self.final_list=[]
+        self.dict={}
+        try:
+            with open('data.json','r',encoding='utf-8') as file:
+                data=json.loads(file.read())
+                category_list=[value for self.dict in data for key,value in self.dict.items() if key=='category']
+                if len(data)>0:
+                    for self.dict in data:
+                        if self.category[category_input-1] in category_list:
+                            if self.category[category_input-1]==object['category']:
+                                self.dict['products'].append(
+                                    {
+                                        'pid':self.product_id,
+                                        'prod_name':self.product_name,
+                                        'company_name':self.company_name,
+                                        'prod_price':self.product_price,
+                                        'gst':self.gst[1],
+                                        'prod_image':self.product_image,
+                                        'shipping_charge':self.shipping_charge,
+                                        'quantity':self.quantity
+                                    }
+                                )
+                            else:
+                                pass
+                        else:
+                            self.dict={
+                                'category':self.category[category_input-1],
+                                'products':[
+                                    {
+                                        'pid':self.product_id,
+                                        'prod_name':self.product_name,
+                                        'company_name':self.company_name,
+                                        'prod_price':self.product_price,
+                                        'gst':self.gst[1],
+                                        'prod_image':self.product_image,
+                                        'shipping_charge':self.shipping_charge,
+                                        'quantity':self.quantity
+                                    }
+                                ]
+                            }
+                    self.final_list.append(self.dict)
+                    data+=self.final_list
+                    self.dict=data
+                else:
+                    pass
+
+        except:
+            data=[
+                {
+                    'category':self.category[category_input-1],
+                    'products':[
+                        {
+                            'pid':self.product_id,
+                            'prod_name':self.product_name,
+                            'company_name':self.company_name,
+                            'prod_price':self.product_price,
+                            'gst':self.gst[1],
+                            'prod_image':self.product_image,
+                            'shipping_charge':self.shipping_charge,
+                            'quantity':self.quantity
+                        }
+                    ]
+                }
+            ]
+        
+        self.update_product(data)
+        
+    
+    def seller_details(self,name,city,prod_id):
+        self.name=name
+        self.city=city
+        self.seller_id=random.randint(1001,9999)
+        self.listed_on=['web1','web2','web3']
+        with open('data.json','r',encoding='utf-8') as file:
+            data=json.loads(file.read())
+            for self.dict in data:
+                for product in self.dict['products']:
+                    if product['pid']==prod_id:
+                        self.dict['seller_details'].append(
+                            {
+                                'seller_name':self.name,
+                                'seller_city':self.city,
+                                'seller_id':self.seller_id,
+                                'listed_on':self.listed_on
+                            }
+                        )
+                    else:
+                        pass
+        self.update_product(data)
+        
+    def fetch_product(self,prod_id):
+        with open('data.json','r',encoding='utf-8') as file:
+            self.data=json.loads(file.read())
+            for self.dict in self.data:
+                for product in self.dict['products']:
+                    if product['pid']==prod_id:
+                        return product
+                    else:
+                        return print('product not found')
+    def add_review(self,prod_id,costumer_review,rating):
+        product=self.fetch_product(prod_id)
+        product['review']=[
+            {
+                'costumer_review':costumer_review,
+                'rating':rating
+            }
+        ]
+        return product
+    def update_product(self,*args,**kwargs):
+        with open('data.json','w',encoding='utf-8') as file:
+            data=json.dumps(args)
+            file.write(data)
+        return print('data updated sucessfully')
+# obj=ProductDetail()
+# obj.add_product('oppoa5','oppo',1000,2,50,1)
+while True:
+    q=str(input('press enter to continue the program else q to quit.'))
+    if q=='q':
+        print('Thank You!')
+        break
+    else:
+        try:
+            obj=ProductDetail()
+            category_input=int(input("enter the category: "))
+            choose=int(input('''
+            please choose a correct option below to add the product details:
+            1. add product details
+            2. add seller details
+            3. add reviews and rating
+            4. for others
+            '''))
+            if choose==1:
+                product_name=str(input('enter the name of the product:'))
+                company_name=str(input('enter the brand name:'))
+                product_price=float(input('enter the price of the product: '))
+                shipping_charge=float(input('enter the shipping charge: '))
+                quantity=int(input('enter the quantity of the product: '))
+                category_input=category_input
+                obj.add_product(product_name,company_name,product_price,category_input,shipping_charge,quantity)
+            elif choose==2:
+                name=str(input('enter the seller name: '))
+                city=str(input('enter the city of seller: '))
+                prod_id=int(input('enter the product id:'))
+                obj.seller_details(name,city,prod_id)
+            elif choose==3:
+                prod_id=int(input('enter the product id: '))
+                costumer_review=str(input('enter the review:'))
+                rating=float(input('enter the rating: '))
+            elif choose==4:
+                get_product_by_id=int(input('''
+                enter a correct option below:
+                1. fetch product by product id
+                2. update product detrails
+                '''))
+                if get_product_by_id==1:
+                    prod_id=int(input('enter the product id:'))
+                    obj.fetch_product(prod_id)
+                elif get_product_by_id==2:
+                    pass
+                else:
+                    print('enter a correct option. Thank You!')
+            else:
+                print('enter a correct option Thank You!')
+
+
+        except Exception as e:
+            print(e)
